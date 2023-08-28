@@ -17,7 +17,7 @@
 
 🚧 Under construction - don't use yet! 🚧
 
-This is a proof of concept framework that allows the creation of web applications using only Python
+This is a proof of concept, web assembly-powered framework that allows the creation of web applications using only Python
 
 ## Try it out
 
