@@ -22,3 +22,5 @@ This is a proof of concept framework that allows the creation of web application
 ## Try it out
 
 Link to playground: [https://rdeepak2002.github.io/snek-framework](https://rdeepak2002.github.io/snek-framework)
+
+<img width="1271" alt="screenshot" src="https://github.com/rdeepak2002/snek-framework/assets/7110480/06087fd4-3bc1-48e4-bd6b-1ed10b48bdae">
