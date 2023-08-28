@@ -1,7 +1,7 @@
 on:
   push:
     branch:
-      - '**'
+      - 'main'
 name: deploy
 jobs:
   deploy_web:
