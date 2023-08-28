@@ -24,9 +24,12 @@
     </div>
     <script type="module">
         import { makeDraggable } from "./lib/playground-ui/drag.js";
-        import init, { python_to_html } from "./lib/snek-core/snek_core.js";
+        import init, { python_to_html, init_logger } from "./lib/snek-core/snek_core.js";
         // run python code and render it
         init().then(() => {
+            // initialize logging, so we can view stats in the console
+            init_logger();
+
             // create python editor
             const pythonCodeEditor = CodeMirror(document.getElementById("playground-editor-wrapper"), {
                 value: "",
