@@ -445,12 +445,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "gc"
-version = "0.4.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3edaac0f5832202ebc99520cb77c932248010c4645d20be1dc62d6579f5b3752"
-
-[[package]]
 name = "generic-array"
 version = "0.14.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1779,7 +1773,6 @@ checksum = "62bb4feee49fdd9f707ef802e22365a35de4b7b299de4763d44bfea899442ff9"
 name = "snek-core"
 version = "0.1.0"
 dependencies = [
- "gc",
  "log",
  "rustpython-common",
  "rustpython-derive",
@@ -2312,9 +2305,9 @@ checksum = "ca6ad05a4870b2bf5fe995117d3728437bd27d7cd5f06f13c17443ef369775a1"
 
 [[package]]
 name = "wasm-logger"
-version = "0.1.5"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1c8f901fc525a6361552f3d95d7439382e7be2eb7e8f5ae0c88b94e434cbca2a"
+checksum = "074649a66bb306c8f2068c9016395fa65d8e08d2affcbf95acf3c24c3ab19718"
 dependencies = [
  "log",
  "wasm-bindgen",
