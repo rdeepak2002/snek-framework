@@ -39,7 +39,7 @@ html, body {
 }
 
 #playground-editor-wrapper {
-    width: min(600px, 49%);
+    width: min(1000px, 60%);
     height: 100%;
 }
 
