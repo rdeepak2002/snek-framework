@@ -30,14 +30,24 @@
             // initialize logging, so we can view stats in the console
             init_logger();
 
+            function betterTab(cm) {
+                if (cm.somethingSelected()) {
+                    cm.indentSelection("add");
+                } else {
+                    cm.replaceSelection(cm.getOption("indentWithTabs")? "\t":
+                        Array(cm.getOption("indentUnit") + 1).join(" "), "end", "+input");
+                }
+            }
+
             // create python editor
             const pythonCodeEditor = CodeMirror(document.getElementById("playground-editor-wrapper"), {
                 value: "",
                 mode:  "python",
-                theme: "darcula"
+                theme: "darcula",
+                extraKeys: { Tab: betterTab }
             });
 
-            pythonCodeEditor.on('change',function(codeEditor){
+            pythonCodeEditor.on('change', function(codeEditor){
                 // clear previous changes
                 document.getElementById("root").innerHTML = "";
                 // every time python code changes, parse and render new result
