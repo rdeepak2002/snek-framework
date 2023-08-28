@@ -6,6 +6,12 @@ extern "C" {
 }
 
 #[wasm_bindgen]
-pub fn greet(name: &str) {
-    alert(&format!("Hello, {}!", name));
+pub fn python_to_html() -> String {
+    let website_code = r#"
+        <div>
+            <h1>Header text</h1>
+            <p>Paragraph text</p>
+        </div>
+    "#;
+    String::from(website_code)
 }

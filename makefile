@@ -1,6 +1,12 @@
-all: clean build install
+all: cleanplayground cleansnek build install
+
+cleanplayground:
+	cd playground; rm -rf build;
 
 clean:
+	cd snek-core; rm -rf build;
+
+cleansnek:
 	cd snek-core; rm -rf build;
 
 build:

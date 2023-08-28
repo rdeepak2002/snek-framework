@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8" />
+    <title>snek playground</title>
+</head>
+<body>
+<div id="root"></div>
+<script type="module">
+    import init, { python_to_html } from "./build/snek_core.js";
+    init().then(() => {
+        const html = python_to_html();
+        const node = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
+        document.getElementById("root").appendChild(node);
+    });
+</script>
+</body>
+</html>
