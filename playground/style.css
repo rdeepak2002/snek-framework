@@ -1,0 +1,49 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+.playground-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.CodeMirror {
+    height: auto;
+    max-height: 100%;
+}
+
+#playground-divider {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(29, 30, 34, 255);
+    width: 10px;
+}
+
+#playground-divider:hover {
+    cursor: col-resize;
+}
+
+#playground-divider-slider {
+    background: white;
+    height: 70px;
+    width: 4px;
+    border-radius: 2px;
+}
+
+#playground-divider-slider:hover {
+    cursor: col-resize;
+}
+
+#playground-editor-wrapper {
+    width: min(1000px, 60%);
+    height: 100%;
+}
+
+#root {
+    flex-grow: 0.5;
+    height: 100%;
+}
