@@ -1,7 +1,7 @@
 on:
   push:
     branch:
-      - '**'
+      - 'main'
 name: deploy
 jobs:
   deploy_web:
@@ -10,6 +10,7 @@ jobs:
     permissions:
       pages: write
       id-token: write
+      content: write
     steps:
       - uses: actions/checkout@v2
       - uses: jetli/wasm-pack-action@v0.4.0

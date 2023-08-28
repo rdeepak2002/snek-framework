@@ -23,8 +23,8 @@
         <div id="root"></div>
     </div>
     <script type="module">
-        import { makeDraggable } from "./lib/drag.js";
-        import init, { python_to_html } from "./build/snek_core.js";
+        import { makeDraggable } from "./lib/playground-ui/drag.js";
+        import init, { python_to_html } from "./lib/snek-core/snek_core.js";
         // run python code and render it
         init().then(() => {
             // create python editor

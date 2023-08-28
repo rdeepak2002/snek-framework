@@ -1,16 +1,7 @@
-all: cleanplayground cleansnek build install
-
-cleanplayground:
-	cd playground; rm -rf build;
+all: clean build
 
 clean:
-	cd snek-core; rm -rf build;
-
-cleansnek:
-	cd snek-core; rm -rf build;
+	cd playground; cd lib; rm -rf snek-core;
 
 build:
-	cd snek-core; wasm-pack build --target web --out-dir build --release;
-
-install:
-	cp -R snek-core/build playground/build
+	cd snek-core; wasm-pack build --target web --out-dir ../playground/lib/snek-core --release;
