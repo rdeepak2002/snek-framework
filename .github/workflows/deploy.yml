@@ -1,0 +1,25 @@
+on:
+  push:
+    tags:
+      - '**'
+name: deploy
+jobs:
+  deploy_web:
+    name: Deploy Web
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: jetli/wasm-pack-action@v0.4.0
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - name: Add Toolchain
+        working-directory: crates/dream-runner
+        run: rustup component add rust-src --toolchain nightly-2022-12-12-x86_64-unknown-linux-gnu
+      - name: Build Web
+        run: make
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+        with:
+          path: 'playground'
