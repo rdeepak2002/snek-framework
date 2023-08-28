@@ -5,9 +5,11 @@
     <title>snek playground</title>
     <link rel="stylesheet" href="style.css" />
     <!--code mirror to render python editor-->
-    <script src="codemirror/lib/codemirror.js"></script>
-    <script src="codemirror/mode/python/python.js"></script>
-    <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
+    <script src="lib/codemirror/lib/codemirror.js"></script>
+    <script src="lib/codemirror/mode/python/python.js"></script>
+    <link rel="stylesheet" href="lib/codemirror/lib/codemirror.css" />
+    <link rel="stylesheet" href="lib/codemirror/theme/darcula.css" />
+    <link rel="stylesheet" href="lib/codemirror/theme/idea.css" />
     <!--favicon-->
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
@@ -15,35 +17,51 @@
 <body>
     <div class="playground-container">
         <div id="playground-editor-wrapper"></div>
-        <div class="playground-divider"></div>
+        <div id="playground-divider">
+            <div id="playground-divider-slider"></div>
+        </div>
         <div id="root"></div>
     </div>
     <script type="module">
-        // render python editor
-        const pythonCodeEditor = CodeMirror(document.getElementById("playground-editor-wrapper"), {
-            value: "",
-            mode:  "python"
-        });
-        pythonCodeEditor.setSize(null, screen.height);
-        addEventListener("resize", (_event) => {
-            pythonCodeEditor.refresh();
-        });
-
-        // pull demo text
-        const client = new XMLHttpRequest();
-        client.open('GET', 'demo.py');
-        client.onreadystatechange = function() {
-            console.log(client.responseText);
-            pythonCodeEditor.setValue(client.responseText);
-        }
-        client.send();
-
-        // run python code and render it
+        import { makeDraggable } from "./lib/drag.js";
         import init, { python_to_html } from "./build/snek_core.js";
+        // run python code and render it
         init().then(() => {
-            const html = python_to_html();
-            const node = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
-            document.getElementById("root").appendChild(node);
+            // create python editor
+            const pythonCodeEditor = CodeMirror(document.getElementById("playground-editor-wrapper"), {
+                value: "",
+                mode:  "python",
+                theme: "darcula"
+            });
+
+            pythonCodeEditor.on('change',function(codeEditor){
+                // clear previous changes
+                document.getElementById("root").innerHTML = "";
+                // every time python code changes, parse and render new result
+                const newCode = codeEditor.getValue();
+                const html = python_to_html();
+                const node = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
+                document.getElementById("root").appendChild(node);
+            });
+
+            pythonCodeEditor.setSize(null, screen.height);
+            addEventListener("resize", (_event) => {
+                pythonCodeEditor.refresh();
+            });
+
+            // pull demo text
+            const client = new XMLHttpRequest();
+            client.open('GET', 'demo.py');
+            client.onreadystatechange = function() {
+                pythonCodeEditor.setValue(client.responseText);
+            }
+            client.send();
+
+            // make bar draggable to resize editor and viewing panel
+            makeDraggable(document.getElementById("playground-divider"), (e) => {
+                document.getElementById("playground-editor-wrapper").style.width = e.clientX + "px";
+                pythonCodeEditor.refresh();
+            });
         });
     </script>
 </body>
