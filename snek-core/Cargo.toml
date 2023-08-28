@@ -1,8 +1,22 @@
 [package]
 name = "snek-core"
 version = "0.1.0"
+authors = ["Deepak Ramalingam <rdeepak2002@gmail.com>"]
+description = "A framework to create websites using only Python"
+license = "MIT/Apache-2.0"
+repository = "https://github.com/rdeepak2002/snek-framework"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[lib]
+crate-type = ["cdylib"]
 
 [dependencies]
+# exposing Rust library to JavaScript
+wasm-bindgen = "0.2.87"
+
+# python interpreter
+rustpython-common = { git = "https://github.com/RustPython/RustPython", tag = "v0.2.0" }
+rustpython-parser = { git = "https://github.com/RustPython/RustPython", tag = "v0.2.0" }
+rustpython-pylib = { git = "https://github.com/RustPython/RustPython", tag = "v0.2.0", default-features = false, optional = true }
+rustpython-stdlib = { git = "https://github.com/RustPython/RustPython", tag = "v0.2.0", default-features = false, optional = true }
+rustpython-vm = { git = "https://github.com/RustPython/RustPython", tag = "v0.2.0", default-features = false, features = ["compiler"] }
