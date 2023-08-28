@@ -16,6 +16,7 @@ wasm-bindgen = "0.2.87"
 
 # logging
 log = "0.4.20"
+wasm-logger = "0.1.5"
 
 # python interpreter
 rustpython-common = { git = "https://github.com/RustPython/RustPython", tag = "v0.2.0" }
