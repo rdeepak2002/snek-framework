@@ -1,0 +1,23 @@
+{
+  "name": "snek-core",
+  "collaborators": [
+    "Deepak Ramalingam <rdeepak2002@gmail.com>"
+  ],
+  "description": "A framework to create websites using only Python",
+  "version": "0.1.0",
+  "license": "MIT/Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rdeepak2002/snek-framework"
+  },
+  "files": [
+    "snek_core_bg.wasm",
+    "snek_core.js",
+    "snek_core.d.ts"
+  ],
+  "module": "snek_core.js",
+  "types": "snek_core.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
