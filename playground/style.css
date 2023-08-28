@@ -1,0 +1,31 @@
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+.playground-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.playground-divider {
+    background: rgba(29, 30, 34, 255);
+    width: 5px;
+}
+
+.CodeMirror {
+    height: auto;
+    max-height: 100%;
+}
+
+#playground-editor-wrapper {
+    flex-grow: 0.3;
+    min-width: min(500px, vw - 100px);
+    height: 100%;
+}
+
+#root {
+    flex-grow: 1.0;
+    height: 100%;
+}

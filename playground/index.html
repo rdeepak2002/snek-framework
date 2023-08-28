@@ -3,16 +3,45 @@
 <head>
     <meta charset="utf-8" />
     <title>snek playground</title>
+    <link rel="stylesheet" href="style.css" />
+    <!--code mirror to render python editor-->
+    <script src="codemirror/lib/codemirror.js"></script>
+    <script src="codemirror/mode/python/python.js"></script>
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css" />
 </head>
 <body>
-<div id="root"></div>
-<script type="module">
-    import init, { python_to_html } from "./build/snek_core.js";
-    init().then(() => {
-        const html = python_to_html();
-        const node = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
-        document.getElementById("root").appendChild(node);
-    });
-</script>
+    <div class="playground-container">
+        <div id="playground-editor-wrapper"></div>
+        <div class="playground-divider"></div>
+        <div id="root"></div>
+    </div>
+    <script type="module">
+        // render python editor
+        const pythonCodeEditor = CodeMirror(document.getElementById("playground-editor-wrapper"), {
+            value: "",
+            mode:  "python"
+        });
+        pythonCodeEditor.setSize(null, screen.height);
+        addEventListener("resize", (_event) => {
+            pythonCodeEditor.refresh();
+        });
+
+        // pull demo text
+        const client = new XMLHttpRequest();
+        client.open('GET', 'demo.py');
+        client.onreadystatechange = function() {
+            console.log(client.responseText);
+            pythonCodeEditor.setValue(client.responseText);
+        }
+        client.send();
+
+        // run python code and render it
+        import init, { python_to_html } from "./build/snek_core.js";
+        init().then(() => {
+            const html = python_to_html();
+            const node = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
+            document.getElementById("root").appendChild(node);
+        });
+    </script>
 </body>
 </html>
