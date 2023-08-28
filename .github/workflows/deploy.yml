@@ -4,15 +4,15 @@ on:
       - '**'
 name: deploy
 jobs:
-  permissions:
-    pages: write
-    id-token: write
-  environment:
-    name: github-pages
-    url: ${{ steps.deployment.outputs.page_url }}
   deploy_web:
     name: Deploy Web
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v2
       - uses: jetli/wasm-pack-action@v0.4.0
