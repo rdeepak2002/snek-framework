@@ -39,7 +39,7 @@
                 document.getElementById("root").innerHTML = "";
                 // every time python code changes, parse and render new result
                 const newCode = codeEditor.getValue();
-                const html = python_to_html();
+                const html = python_to_html(newCode);
                 const node = new DOMParser().parseFromString(html, "text/html").body.firstElementChild;
                 document.getElementById("root").appendChild(node);
             });

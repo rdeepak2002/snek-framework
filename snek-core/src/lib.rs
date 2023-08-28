@@ -6,7 +6,8 @@ extern "C" {
 }
 
 #[wasm_bindgen]
-pub fn python_to_html() -> String {
+pub fn python_to_html(code: &str) -> String {
+    log::debug!("Executing Python code {}", code);
     let website_code = r#"
         <div>
             <h1>Header text</h1>
